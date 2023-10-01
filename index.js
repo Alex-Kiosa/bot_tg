@@ -1,7 +1,7 @@
 const telegramApi = require('node-telegram-bot-api')
+require('dotenv').config()
 
-const token = '6220115535:AAGqSlhAx9fP12kCszQShMjnus0A-xak-vU'
-const bot = new telegramApi(token, {polling: true})
+const bot = new telegramApi(process.env.BOT_TOKEN, {polling: true})
 
 const containSpam = (message) => {
     let result = false
@@ -413,12 +413,5 @@ bot.on('message', msg => {
 
     if (containSpam(message)) {
         bot.deleteMessage(chatId, msg.message_id)
-        // sending message to banned user
-        // bot.sendMessage(msg.from.id, 'Ай-ай! Нехорошо поступил(а). Спам нам не нужен :) Если я заблокировал тебя по ошибке, напиши моему создателю https://t.me/alex_kiosa, он разбанит тебя')
     }
 })
-
-// Sending message for new member
-/*bot.on('new_chat_members', (msg) => {
-    bot.sendMessage(msg.chat.id, `Приветствую, ${msg.new_chat_member.first_name}. Перед тем, как приступить к общению, прочитай, пожалуйста, наши правила в закрепленном сообщении вверху`)
-})*/
