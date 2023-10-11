@@ -395,6 +395,7 @@ const containSpam = (message) => {
         'прибыльными',
         'прибыльном',
         'прибыльных',
+        'самоокупаем',
     ]
 
     for (let i = 0; i < stopWords.length; i++) {
